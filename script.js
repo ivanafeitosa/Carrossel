@@ -1,3 +1,56 @@
+let navBar = document.getElementById("nav-bar");
+let btnDark = document.getElementById("dark-light");
+let body = document.getElementById('body');
+
+btnDark.addEventListener('click', () => {
+  if(localStorage.getItem('darkMode') == 'true') {
+    // console.log("Testando darkmode");
+    lightMode();
+  } else {
+    // console.log("Testando lightmode");
+    darkMode();
+  }
+  
+})
+
+if(localStorage.getItem('darkMode') == 'true') {
+  // console.log("Testando darkmode");
+  darkMode();
+} else {
+  // console.log("Testando lightmode");
+  lightMode();
+}
+
+function darkMode() {
+  navBar.classList.remove('navbar-expand-lg');
+  navBar.classList.remove('bg-body-tertiary');
+  navBar.classList.add('bg-dark');
+  navBar.classList.add('border-bottom');
+  navBar.classList.add('border-body');
+  navBar.setAttribute("data-bs-theme", "dark");
+
+  body.classList.remove('white-mode');
+  body.classList.add('dark-mode');
+
+
+  localStorage.setItem('darkMode', 'true');
+};
+
+function lightMode() {
+  navBar.classList.remove('bg-dark');
+  navBar.classList.remove('border-bottom');
+  navBar.classList.remove('border-body');
+  navBar.removeAttribute('data-bs-theme');
+  navBar.classList.add('navbar-expand-lg');
+  navBar.classList.add('bg-body-tertiary');
+
+  body.classList.remove('dark-mode');
+  body.classList.add('white-mode');
+
+  
+  localStorage.setItem('darkMode', 'false');
+};
+
 let cards = [
     {
       id: 1,      
