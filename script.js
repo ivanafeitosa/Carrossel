@@ -1,3 +1,4 @@
+//Acessando os elementos do HTML
 let produtos = document.getElementById("grupo_cards");
 let navBar = document.getElementById("nav-bar");
 let btnDark = document.getElementById("dark-light");
@@ -5,6 +6,7 @@ let body = document.getElementById('body');
 let icon = document.getElementById('icon');
 let nomeBtn = document.getElementById('nome-botao');
 
+//Carregando os cards
 let cards = [
   {
     id: 1,
@@ -81,7 +83,7 @@ for (let i = 0; i < cards.length; i++) {
     `
 }
 
-
+//Add modo dark-light ao clicar no botão
 btnDark.addEventListener('click', () => {
   if (localStorage.getItem('darkMode') == 'true') {
     lightMode();
@@ -91,19 +93,24 @@ btnDark.addEventListener('click', () => {
 
 })
 
+//Mantendo a página com a último modo setado antes de ser recarregada
 if (localStorage.getItem('darkMode') == 'true') {
   darkMode();
 } else {
   lightMode();
 }
 
+//Funcao modo dark
 function darkMode() {
+  //Configuracoes navbar
   navBar.classList.add('bg-dark');
   navBar.setAttribute("data-bs-theme", "dark");
 
+  //Configuracoes do background da página
   body.classList.remove('white-mode');
   body.classList.add('dark-mode');
 
+  //Configuracoes dos cards
   document.querySelectorAll('.grupo_cards .card').forEach(elemento => {
     elemento.classList.add("text-bg-dark");
   });
@@ -113,9 +120,11 @@ function darkMode() {
   btnDark.classList.remove("btn-light");
   btnDark.classList.add("btn-dark");
 
+  //Variavel sendo setado no local storage
   localStorage.setItem('darkMode', 'true');
 };
 
+//Funcao modo light
 function lightMode() {
   navBar.classList.remove('bg-dark');
   navBar.removeAttribute('data-bs-theme');
